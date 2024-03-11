@@ -16,10 +16,11 @@ jobs:
                     sudo apt update
 
             # -   uses: actions/checkout@v4.1.1
-            -   uses: awalsh128/cache-apt-pkgs-action@latest
-                with:
-                    packages: gcc-13-aarch64-linux-gnu g++-13-aarch64-linux-gnu qemu-system-arm
-                    version: 1.0
+            # -   uses: awalsh128/cache-apt-pkgs-action@latest
+            #     with:
+            #         packages: gcc-13-aarch64-linux-gnu g++-13-aarch64-linux-gnu qemu-system-arm
+            #         version: 1.0
+            -   run: sudo apt install -y gcc-13-aarch64-linux-gnu g++-13-aarch64-linux-gnu
 
             -   name: aarch64-gcc version
                 run: aarch64-linux-gnu-g++-13 --version -v
