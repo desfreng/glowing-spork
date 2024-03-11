@@ -11,8 +11,11 @@ jobs:
         name: Build Project
         runs-on: ${{ matrix.os }}
         steps:
-            -   name: Install aarch64-gcc
-                run: sudo apt install -y crossbuild-essential-arm64
+            - uses: actions/checkout@v2
+            - uses: awalsh128/cache-apt-pkgs-action@latest
+              with:
+                packages: crossbuild-essential-arm64
+                version: 1.0
 
             -   name: aarch64-gcc version
                 run: aarch64-linux-gnu-g++ --version -v
