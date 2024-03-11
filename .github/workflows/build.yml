@@ -15,14 +15,14 @@ jobs:
                     echo "deb mirror+file:/etc/apt/apt-mirrors.txt mantic main" | sudo tee /etc/apt/sources.list.d/temporary-repository.list
                     sudo apt update
 
-            -   name: Install aarch64-gcc
-                run: sudo apt search aarch64-linux-gnu
+            # -   uses: actions/checkout@v4.1.1
+            -   uses: awalsh128/cache-apt-pkgs-action@latest
+                with:
+                    packages: gcc-13-aarch64-linux-gnu g++-13-aarch64-linux-gnu qemu-system-arm
+                    version: 1.0
 
-            # -   name: Install aarch64-gcc
-            #     run: sudo apt install -y crossbuild-essential-arm64
-
-            # -   name: aarch64-gcc version
-            #     run: aarch64-linux-gnu-g++ --version -v
+            -   name: aarch64-gcc version
+                run: aarch64-linux-gnu-g++-13 --version -v
 
             # - name: Test Project
             #  runs: ctest --test-dir build
